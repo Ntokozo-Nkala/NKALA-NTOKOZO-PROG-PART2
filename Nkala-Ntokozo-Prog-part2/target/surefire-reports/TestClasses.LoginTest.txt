@@ -1,0 +1,74 @@
+-------------------------------------------------------------------------------
+Test set: TestClasses.LoginTest
+-------------------------------------------------------------------------------
+Tests run: 10, Failures: 3, Errors: 4, Skipped: 0, Time elapsed: 0.254 s <<< FAILURE! -- in TestClasses.LoginTest
+TestClasses.LoginTest.testreturnLoginStatus -- Time elapsed: 0.020 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "String.equals(Object)" because "this.username" is null
+	at com.mycompany.nkala.ntokozo.prog.part2.Login.loginUser(Login.java:95)
+	at com.mycompany.nkala.ntokozo.prog.part2.Login.returnLoginStatus(Login.java:99)
+	at TestClasses.LoginTest.testreturnLoginStatus(LoginTest.java:64)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+TestClasses.LoginTest.testCheckUsePasswordComplexity -- Time elapsed: 0.015 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Your Account is successfully registered! Welcome,kyl. ==> expected: <Your Account is successfully registered! Welcome,kyl.> but was: <Your Account is successfully registered! Welcome, kyl.>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1156)
+	at TestClasses.LoginTest.testCheckUsePasswordComplexity(LoginTest.java:33)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+TestClasses.LoginTest.testCheckUserNameCorrectlyFormatted -- Time elapsed: 0.006 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Your Account is successfully registered! Welcome,kyl. ==> expected: <Your Account is successfully registered! Welcome,kyl.> but was: <Your Account is successfully registered! Welcome, kyl.>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1156)
+	at TestClasses.LoginTest.testCheckUserNameCorrectlyFormatted(LoginTest.java:17)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+TestClasses.LoginTest.testreturnLoginStatusButFail -- Time elapsed: 0.004 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "String.equals(Object)" because "this.username" is null
+	at com.mycompany.nkala.ntokozo.prog.part2.Login.loginUser(Login.java:95)
+	at com.mycompany.nkala.ntokozo.prog.part2.Login.returnLoginStatus(Login.java:99)
+	at TestClasses.LoginTest.testreturnLoginStatusButFail(LoginTest.java:72)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+TestClasses.LoginTest.testloginUser -- Time elapsed: 0.004 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "String.equals(Object)" because "this.username" is null
+	at com.mycompany.nkala.ntokozo.prog.part2.Login.loginUser(Login.java:95)
+	at TestClasses.LoginTest.testloginUser(LoginTest.java:79)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+TestClasses.LoginTest.testCheckCellPhoneNumber -- Time elapsed: 0.005 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Your Account is successfully registered! Welcome,kyl. ==> expected: <Your Account is successfully registered! Welcome,kyl.> but was: <Your Account is successfully registered! Welcome, kyl.>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1156)
+	at TestClasses.LoginTest.testCheckCellPhoneNumber(LoginTest.java:49)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+TestClasses.LoginTest.testloginUserButFail -- Time elapsed: 0.003 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "String.equals(Object)" because "this.username" is null
+	at com.mycompany.nkala.ntokozo.prog.part2.Login.loginUser(Login.java:95)
+	at TestClasses.LoginTest.testloginUserButFail(LoginTest.java:86)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
