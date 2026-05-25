@@ -60,7 +60,7 @@ public class LoginTest {
    @Test
    public void testreturnLoginStatus(){
    Login login = new Login();
-   String expected = "ntok_", "Nt&&for@ye22!";
+   String expected = "ntok_, Nt&&for@ye22!";
    String Actual = login.returnLoginStatus("ntok_", "Nt&&for@ye22!");
    assertEquals(expected, Actual,"Welcome ntokozo,nkala. It is nice to see you again.");
    }
@@ -68,7 +68,7 @@ public class LoginTest {
     @Test
    public void testreturnLoginStatusButFail(){
    Login login = new Login();
-   String expected = "ntokozo!!!!!!!", "password";
+   String expected = "ntokozo!!!!!!!, password";
    String Actual = login.returnLoginStatus("ntok_", "Nt&&for@ye22!");
    assertNotEquals(expected, Actual,"Username or password incorrect. please try again.");
    }
