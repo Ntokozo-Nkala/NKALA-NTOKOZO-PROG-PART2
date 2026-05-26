@@ -30,6 +30,7 @@ public class Message {
         this.hash = hash;
     }  
     
+    //shows the menu
     public static void show(){
         System.out.println("\n=======Welcome to QuickChat App.======");
         boolean running = true;
@@ -58,7 +59,7 @@ public class Message {
         }
     }
     
-    // asks user how many messages they want to read
+    // asks user how many messages they want to send
     // loops and builds each one
     private static void sendMessages(){
         System.out.println("\nHow many messages do you want to send?");
@@ -85,9 +86,7 @@ public class Message {
         System.out.println("\nTotal messages sent: " + returnTotalMessagess()); 
         System.out.println(printMessages()); 
     } 
-
     public Message(){
-        // Handled empty constructor initialization cleanly
         this.id = "0000000000";
         this.count = 0;
     }
@@ -97,7 +96,8 @@ public class Message {
        return this.id != null && this.id.length() <= 10;
     }
       
-    // ensures that international code contains ('+') and is 10 or less numbers. 
+    //method ensures that number is no more than 10 characters
+    // ensures that the number contains an international code
     public String checkRecipientCell(){ 
         if (this.recipient == null || this.recipient.isEmpty()) { 
             return "Cell phone number incorrectly formatted or does not contain an international code. Please correct the number and try again."; 
@@ -108,8 +108,8 @@ public class Message {
         return "Cell phone number successfully captured.";
     } 
     
-    // checks the text length rules directly for the tests
-    public String checkMessageLength(String text) {
+    //ensures that the users message is not more than 250 characters
+    public String checkMessageLength(String text){
         if (text == null || text.isEmpty()) {
             return "Message cannot be empty.";
         }
@@ -120,7 +120,8 @@ public class Message {
         return "Message ready to send.";
     }
     
-    // formats = first two digits of ID, message count, firstword and lastword are caps
+    //method creates the message hash and returns it
+    //contains message ID, colon and the number of messages
     public String createMessageHash(){ 
         String[] words = this.content.trim().split("\\s+"); 
         String firstWord = words[0]; 
@@ -129,71 +130,73 @@ public class Message {
         this.hash = generatedHash; 
         return generatedHash; 
     } 
- 
+    
+    //method gives a send, delete or store option to the user
     public String sendMessage(String recipientPhone, String messageContent, String action) {
-        this.recipient = recipientPhone;
-        this.content = messageContent;
-        this.count = 0; 
-        this.id = "0000000000";
-        createMessageHash();
+    this.recipient = recipientPhone;
+    this.content = messageContent;
+    this.count = 0; 
+    this.id = "0000000000";
+    createMessageHash();
 
-        if (action.equalsIgnoreCase("Send") || action.equalsIgnoreCase("Send Message")) {
-            sentMessages.add(this);
-            totalMessagesSent++;
-            return "Message successfully sent.";
-        } 
-        else if (action.equalsIgnoreCase("Discard") || action.equalsIgnoreCase("Disregard Message")) {
-            return "Press 0 to delete the message.";
-        } 
-        else if (action.equalsIgnoreCase("Store") || action.equalsIgnoreCase("Store Message")) {
-            return "Message successfully stored.";
-        }
-        return "Invalid action";
-    }
-
-    public String sendMessage(){ 
-        System.out.println("\nChoose an action for this message:"); 
-        System.out.println("1. Send Message"); 
-        System.out.println("2. Disregard Message"); 
-        System.out.println("3. Store Message to send later"); 
-        System.out.print("Your choice: "); 
-        String choice = scanner.nextLine().trim(); 
- 
-        switch(choice){ 
-            case "1": 
-                sentMessages.add(this); 
-                totalMessagesSent++; 
-                System.out.println("Message successfully sent"); 
-                System.out.println("\n--Message Details--"); 
-                System.out.println("Message ID:" + this.id); 
-                System.out.println("Message Hash:" + this.hash); 
-                System.out.println("Recipient:" + this.recipient); 
-                System.out.println("Message:"+ this.content); 
-                return "Message successfully sent"; 
- 
-            case "2": 
-                System.out.println("Press 0 to delete the message"); 
-                String confirm = scanner.nextLine().trim(); 
-                if(confirm.equals("0")){ 
-                    System.out.println("Message deleted."); 
-                    return "Message disregarded"; 
-                } else{ 
-                    System.out.println("Deletion cancelled."); 
-                    return "Message disregard cancelled"; 
-                } 
- 
-            case "3": 
-                sentMessages.add(this); 
-                storeMessage(); 
-                System.out.println("Message successfully stored"); 
-                return "Message is successfully stored"; 
- 
-            default: 
-                System.out.println("Invalid choice. Message disregarded"); 
-                return "Invalid choice message disregarded"; 
-        } 
+    if (action.equalsIgnoreCase("Send") || action.equalsIgnoreCase("Send Message")) {
+        sentMessages.add(this);
+        totalMessagesSent++;
+        return "Message successfully sent.";
     } 
- 
+    else if (action.equalsIgnoreCase("Discard") || action.equalsIgnoreCase("Disregard Message")) {
+        return "Message disregarded";
+    } 
+    else if (action.equalsIgnoreCase("Store") || action.equalsIgnoreCase("Store Message")) {
+        sentMessages.add(this);
+        storeMessage();
+        return "Message is successfully stored";
+    }
+    return "Invalid action";
+}
+
+// Displays the menu 
+public String sendMessage() { 
+    System.out.println("\nChoose an action for this message:"); 
+    System.out.println("1. Send Message"); 
+    System.out.println("2. Disregard Message"); 
+    System.out.println("3. Store Message to send later"); 
+    System.out.print("Your choice: "); 
+    String choice = scanner.nextLine().trim(); 
+
+    switch(choice) { 
+        case "1": 
+            String resultSend = sendMessage(this.recipient, this.content, "Send");
+            System.out.println("Message successfully sent"); 
+            System.out.println("\n--Message Details--"); 
+            System.out.println("Message ID:" + this.id); 
+            System.out.println("Message Hash:" + this.hash); 
+            System.out.println("Recipient:" + this.recipient); 
+            System.out.println("Message:" + this.content); 
+            return resultSend; 
+
+        case "2": 
+            System.out.println("Press 0 to delete the message"); 
+            String confirm = scanner.nextLine().trim(); 
+            if (confirm.equals("0")) { 
+                System.out.println("Message deleted."); 
+                return sendMessage(this.recipient, this.content, "Discard");
+            } else { 
+                System.out.println("Deletion cancelled."); 
+                return "Message disregard cancelled"; 
+            } 
+
+        case "3": 
+            String resultStore = sendMessage(this.recipient, this.content, "Store");
+            System.out.println("Message successfully stored"); 
+            return resultStore; 
+
+        default: 
+            System.out.println("Invalid choice. Message disregarded"); 
+            return "Invalid choice message disregarded"; 
+    } 
+}
+    //method returns all of the messages sent
     public static String printMessages(){ 
         if(sentMessages.isEmpty()){ 
             return "No messages have been sent yet."; 
@@ -209,11 +212,13 @@ public class Message {
         } 
         return sb.toString(); 
     } 
- 
+   
+    //method returns the total messages sent
     public static int returnTotalMessagess(){ 
         return totalMessagesSent; 
     } 
  
+    //method is the json that stors all of the messages 
     public void storeMessage(){ 
         StringBuilder sb = new StringBuilder("[\n"); 
         for (int i = 0; i <sentMessages.size(); i++){ 
@@ -241,10 +246,11 @@ public class Message {
         } 
     } 
     
+    //handles the sending of the messages and displays the appropriate message
     public static Message messageValidation(int messageNumber){ 
         String recipient; 
         while(true){ 
-            System.out.print("Enter recipient phone number (e.g. +27821234567): "); 
+            System.out.print("Enter recipient phone number: "); 
             recipient = scanner.nextLine().trim(); 
             Message temp = new Message("0000000000", messageNumber, recipient, "test", ""); 
             String cellCheck = temp.checkRecipientCell(); 
@@ -256,7 +262,7 @@ public class Message {
         
         String messageText; 
         while(true){ 
-            System.out.println("Enter your message (max 250 characters): "); 
+            System.out.println("Enter your message(max 250 characters): "); 
             messageText = scanner.nextLine(); 
             
             if(messageText.isEmpty()){ 
