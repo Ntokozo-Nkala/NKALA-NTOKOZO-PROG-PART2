@@ -12,7 +12,7 @@ public class MessageTest {
     public void testCheckMessageLengthSuccess() {
         Message message = new Message();
         String expected = "Message ready to send.";
-        String actual = message.checkMessageLength("Hi Mike, can you join us for dinner tonight?");
+        String actual = message.checkMessageLength("Hi Mike, can you join us for dinner tonight");
         assertEquals(expected, actual);
     }
     
